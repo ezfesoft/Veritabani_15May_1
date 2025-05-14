@@ -1,4 +1,4 @@
-# bgt2_ntp_24Ara-1
+# Veritabanı 15 Mayıs 2025  
 
 
 
