@@ -23,7 +23,7 @@ namespace Veritabani_15May_1
 
         private void btnBaglan_Click(object sender, EventArgs e)
         {
-            string connectionString = textBoxSQLBağlanti.Text;
+            
 
             using (SqlConnection baglanti = new SqlConnection(connectionString))
             {
@@ -46,7 +46,7 @@ namespace Veritabani_15May_1
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                    string sorgu = "SELECT * FROM Ogrenci";
+                    string sorgu = "";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                     DataTable tablo = new DataTable();
@@ -61,7 +61,7 @@ namespace Veritabani_15May_1
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "SELECT * FROM Ogrenci WHERE Ad LIKE @ad";
+                string sorgu = "";
                 SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                 adapter.SelectCommand.Parameters.AddWithValue("@ad",   textBoxAdAra.Text );
                 DataTable table = new DataTable();
@@ -75,7 +75,7 @@ namespace Veritabani_15May_1
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "SELECT TOP 1 * FROM Ogrenci ORDER BY DogumTarihi ASC";
+                string sorgu = "";
                 SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                 
                 DataTable table = new DataTable();
@@ -88,7 +88,7 @@ namespace Veritabani_15May_1
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "SELECT * FROM Ogrenci WHERE Bolum LIKE @bolum";
+                string sorgu = "";
                 SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                 adapter.SelectCommand.Parameters.AddWithValue("@bolum", textBoxBolumAra.Text);
                 DataTable table = new DataTable();
@@ -102,8 +102,7 @@ namespace Veritabani_15May_1
             
             using (SqlConnection baglanti= new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "INSERT INTO Ogrenci (Ad, Soyad, DogumTarihi,  Bolum) " +
-                               "VALUES (@Ad, @Soyad, @DogumTarihi, @Bolum)";
+                string sorgu = "";
 
                 SqlCommand command = new SqlCommand(sorgu, baglanti);
 
