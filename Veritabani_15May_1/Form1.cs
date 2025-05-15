@@ -23,7 +23,7 @@ namespace Veritabani_15May_1
 
         private void btnBaglan_Click(object sender, EventArgs e)
         {
-            
+            string connectionString = "Server=172.20.112.108;Database=bgt;User Id=bgt;Password=bgt;";
 
             using (SqlConnection baglanti = new SqlConnection(connectionString))
             {
@@ -41,14 +41,15 @@ namespace Veritabani_15May_1
                 }
             }
         }
-
+        //Server=172.20.112.108;Database=bgt;User Id=bgt;Password=bgt;
         private void btnTumOgrenciler_Click(object sender, EventArgs e)
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                    string sorgu = "";
+                string sorgu = "SELECT * FROM Ogrenci";
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                     DataTable tablo = new DataTable();
                     adapter.Fill(tablo);
 
@@ -61,7 +62,8 @@ namespace Veritabani_15May_1
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "";
+                string sorgu = "SELECT * FROM Ogrenci WHERE Ad = @ad ";
+
                 SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                 adapter.SelectCommand.Parameters.AddWithValue("@ad",   textBoxAdAra.Text );
                 DataTable table = new DataTable();
@@ -75,7 +77,7 @@ namespace Veritabani_15May_1
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "";
+                string sorgu = "SELECT TOP 1 * FROM Ogrenci ORDER BY DogumTarihi DESC";
                 SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                 
                 DataTable table = new DataTable();
@@ -88,7 +90,7 @@ namespace Veritabani_15May_1
         {
             using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "";
+                string sorgu = "SELECT * FROM Ogrenci WHERE Bolum LIKE @bolum";
                 SqlDataAdapter adapter = new SqlDataAdapter(sorgu, baglanti);
                 adapter.SelectCommand.Parameters.AddWithValue("@bolum", textBoxBolumAra.Text);
                 DataTable table = new DataTable();
@@ -102,7 +104,7 @@ namespace Veritabani_15May_1
             
             using (SqlConnection baglanti= new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "";
+                string sorgu = "INSERT INTO Ogrenci (Ad,Soyad,DogumTarihi,Bolum) VALUES ()";
 
                 SqlCommand command = new SqlCommand(sorgu, baglanti);
 
@@ -121,6 +123,24 @@ namespace Veritabani_15May_1
                 dateTimePickerDogumTarihi.Value = DateTime.Now;
             }
 
+        }
+
+        private void buttonSil_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection baglanti = new SqlConnection(SqlConnectionString))
+            {
+                baglanti.Open();
+                string sorgu = "DELETE FROM Ogrenci WHERE OgrenciID= @id";
+                SqlCommand adapter = new SqlCommand(sorgu, baglanti);
+                adapter.Parameters.AddWithValue("@id", textBoxOgrenciID.Text);
+                adapter.ExecuteNonQuery();
+                
+                string sorgu2 = "SELECT * FROM Ogrenci";
+                SqlDataAdapter adapter2 = new SqlDataAdapter(sorgu2, baglanti);
+                DataTable tablo = new DataTable();
+                adapter2.Fill(tablo);
+                dataGridView1.DataSource = tablo;
+            }
         }
     }
 }
