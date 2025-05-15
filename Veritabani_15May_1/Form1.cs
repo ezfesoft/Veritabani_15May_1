@@ -104,7 +104,7 @@ namespace Veritabani_15May_1
             
             using (SqlConnection baglanti= new SqlConnection(SqlConnectionString))
             {
-                string sorgu = "INSERT INTO Ogrenci (Ad,Soyad,DogumTarihi,Bolum) VALUES ()";
+                string sorgu = "INSERT INTO Ogrenci (Ad,Soyad,DogumTarihi,Bolum) VALUES (@Ad,@Soyad,@DogumTarihi,@Bolum)";
 
                 SqlCommand command = new SqlCommand(sorgu, baglanti);
 
