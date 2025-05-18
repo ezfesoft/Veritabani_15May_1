@@ -16,3 +16,5 @@
 5- Bölüm kutusuna bölüm adı girerek "Bölüm Öğrencilerini Getir" butonunun çalışması için gerekli SQL kodunu ekleyiniz.
 
 6- Ad, Soyad, Doğum Tarihi ve Bölüm alanları doldurularak "Öğrenci Ekle" butonunun Click olayına gerekli SQL kodu yazınız.
+
+
